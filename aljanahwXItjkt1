@@ -43,84 +43,56 @@
 <br><input type="submit" name="sbmt" value="Masukkan">
 </body>
 </html>
-<?php
-$makanan = $_POST; //simpan POST hasil inputan kedalam variable
-?>
+
+
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>GoFood</title>
+	<title>dinamis 1</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 </head>
-
 <body>
-    <table border="1" width="300">
-        <caption>Go Food Menu</caption>
-        <thead>
-            <tr>
-                <td>No</td>
-                <td>Nama Makanan</td>
-                <td>Harga</td>
-                <td>Pesan</td>
-            </tr>
-        </thead>
-        <tbody>
-            <form method="POST" action="index.php">
-                <tr>
-                    <td>1</td>
-                    <td>Cendol</td>
-                    <td>10000</td>
-                    <td><input type="checkbox" name="Cendol" value="10000"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kacang</td>
-                    <td>2000</td>
-                    <td><input type="checkbox" name="Kacang" value="2000"></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Rengginang</td>
-                    <td>3000</td>
-                    <td><input type="checkbox" name="Rengginang" value="3000"></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Mie Ayam</td>
-                    <td>13000</td>
-                    <td><input type="checkbox" name="Mieayam" value="13000"></td>
-                </tr>
-        </tbody>
-    </table>
-    <br>
-    <button type="submit">Masukan</button>
-    </form>
-    <?php if ($makanan) : //beri kondisi, ini akan di cetak jika ada inputan yang dikirim ?> 
-        <table border="1" width="300">
-            <thead>
-                <tr>
-                    <td>No</td>
-                    <td>Makan</td>
-                    <td>Harga</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $jmlh = 0; $i = 1; // untuk mendeklarasikan variable penampung hitung harga dan untuk nomor urut ?>
-                <?php foreach ($makanan as $mkn => $harga) : // lakukan hasil inputang dgn perulangan beserta valuenya ?>
-                    <?php $jmlh += $harga; // tambahakn harga ke dalam variable yang tdi di deklarasikan agar dihitung scra otomatis ?>
-                    <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $mkn; ?></td>
-                        <td><?= $harga; ?></td>
-                    </tr>
-                <?php $i++; endforeach; //increment $i agar bertambah satu setiap perulangan untuk nomor urutnya?>
-                <tr>
-                    <td></td>
-                    <td>TOTAL</td>
-                    <td><?= $jmlh; //tampilakn jumlah harganya ?></td>
-                </tr>
-            </tbody>
-        </table>
-    <?php endif; ?>
-</body>
 
-</html>
+<div class="container">
+	<div class="row mt-5 ml-3">
+		<div class="col">
+				<caption><h3 style="margin-bottom: 20px; text-align: center;">Dynamic Form</h3></caption>
+			<div class="table-responsive">
+			<table border="0" cellpadding="10" id="field_row" cellspacing="2">
+					<form name="add" id="add">
+				<tr>
+					<td>
+						<input type="text"  class="form-control rows" name="item[]" placeholder="Nama Barang" id="item">
+					</td>
+					<td>
+						<input type="text"  class="form-control rows" name="qty[]" onclick="hitung()" placeholder="Qty" id="qty">
+					</td>
+					<td>
+						<input type="text"  class="form-control rows" onchange="hitung()" name="price[]" placeholder="Harga" id="price">
+					</td>
+					<td>
+						<input type="text"  class="form-control rows" name="total[]" readonly placeholder="total" id="total">
+					</td>
+					<td>
+						<input type="button" class="btn btn-success" id="tambah" name="tambah" value="Tambah">
+					</td>
+				</tr>
+
+			<table border="0" cellspacing="1" cellpadding="5" style="margin-top: 20px;">
+				<tr>
+					<td><input type="submit" class="btn btn-primary" name="save"></td>
+					 <td height="50px"><b style="margin-left: 270px;">Total<b></td>
+				    <td height="50px" width="300px"><input type="text" class="form-control" readonly name="subtotal" id="subtotal"></td>
+				</tr>
+				</table>
+					 </form>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="tes"></div>
